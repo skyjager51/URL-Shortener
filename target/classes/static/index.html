@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="background">
+    <h1 class="title text">URL Shortener</h1>
+    
+    <div class="container">
+        <p class="text">Reducing the size of your URLs makes them easier to manage and store,
+            and also makes them clearer to share with friends!
+        </p>
+    
+        <form id="send-form">
+            <input type="text" class="input" id="url-input" placeholder="Enter here the URL" required>
+            <button type="submit" class="button">🔗 Shorten</button>
+        </form>
+    </div>
+
+    <!-- div that will contain the shortened url  -->
+    <div id="result" class="result"></div>
+
+    <script>
+        document.getElementById("send-form").addEventListener(
+            "submit", async function(event){
+            event.preventDefault();
+
+            const url = document.getElementById("url-input").value;
+
+            try{
+                const response = await fetch("http://localhost:8080/url-shortener/reduce", {
+                    method: "POST",
+                    headers: {"Content-Type" : "application/json"},
+                    body : JSON.stringify({urlValue: url})
+                });
+
+                const data = await response.json();
+                // Populate the result div with the URL and the new copy button
+                document.getElementById("result").innerHTML =
+                    `<p> Shortned url: </p>
+                     <div class="link-and-button-container">
+                        <p class="link" id="shortened-url-text">${data.encodedUrl}</p>
+                        <button id="copy-button">📋︎</button>
+                    </div>`;
+
+                // Show the result div
+                document.getElementById("result").style.display = "flex";
+
+                // Add event listener to the new copy button
+                const copyButton = document.getElementById("copy-button");
+                copyButton.addEventListener('click', () => {
+                    const shortenedUrlText = document.getElementById("shortened-url-text").textContent;
+                    
+                    // A simple way to copy text in the browser
+                    const tempInput = document.createElement('input');
+                    tempInput.value = shortenedUrlText;
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempInput);
+
+                    // Provide user feedback
+                    copyButton.textContent = "✅";
+                    setTimeout(() => {
+                        copyButton.textContent = "📋︎";
+                    }, 2000);
+                });
+
+                document.getElementById("result").style.display = "block";
+
+            } catch (err){
+                document.getElementById("result").innerHTML = 
+                    `<p> Error: ${err} </p>`; 
+
+                document.getElementById("result").style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>

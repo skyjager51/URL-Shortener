@@ -1,0 +1,93 @@
+.result{
+    background-color: rgb(49, 49, 69);
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    border: 1px solid rgb(88, 87, 87);
+    border-radius: 10px;
+    display: none;
+}
+
+.link{
+    border: 1px solid rgb(88, 87, 87);
+    border-radius: 10px;
+    padding: 6px;
+    background-color: rgb(34, 34, 63);
+
+}
+
+.background{
+    /* background-color: rgb(27, 27, 61); */
+    background-color: rgb(19, 19, 19);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgb(88, 87, 87);
+    border-radius: 10px;
+    padding: 5px;
+    /* background-color: rgb(40, 40, 67); */
+    background-color: rgb(49, 49, 69);
+}
+
+.text{
+    color: white;
+    margin: 20px;
+    text-align: center;
+}
+
+#send-form{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+
+}
+
+.input{
+    margin-bottom: 20px;
+    padding: 6px;
+    background-color: rgb(34, 34, 63);
+    border: 1px solid rgb(88, 87, 87);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.button{
+    margin-bottom: 20px;
+    padding: 5px;
+    /* background-color: rgb(8, 8, 141); */
+    background-color: rgb(7, 53, 137);
+    border: 1px solid rgb(88, 87, 87);
+    border-radius: 10px;
+    color: rgb(119, 118, 118);
+}
+
+.link-and-button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#copy-button{
+    margin-left: 10px;
+    padding: 3px;
+    height: 30px;
+    width: 30px;
+    background-color: rgb(7, 53, 137);
+    border: 1px solid rgb(88, 87, 87);
+    border-radius: 10px;
+}
+
+@media (max-width: 480px) {
+    .container{
+        padding-right: 3px;
+        padding-left: 3px;
+    }
+}
